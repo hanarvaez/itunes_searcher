@@ -8,3 +8,5 @@ data class AlbumQueryBackendResponse(
     val resultsCount: Int?,
     val results: List<AlbumBackendResponse>?
 ): Parcelable
+
+fun AlbumQueryBackendResponse.toAlbumList() = results?.mapNotNull { it.toAlbum() } ?: emptyList()
