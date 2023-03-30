@@ -36,7 +36,13 @@ class AlbumsSearcherActivity :
     }
 
     private fun buildInitialState() {
-
+        binding.buttonSearch.setOnClickListener {
+            dispatchEvent(
+                AlbumSearcherViewEvent.Search(
+                    binding.term.text.toString()
+                )
+            )
+        }
     }
 
     private fun buildContentState(state: AlbumSearcherViewState.Content) {
