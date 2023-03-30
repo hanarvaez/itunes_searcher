@@ -3,14 +3,17 @@ package co.com.monkeymobile.itunes_searcher.presentation.albums_searcher
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.viewModels
 import co.com.monkeymobile.itunes_searcher.databinding.ActivityAlbumsSearcherBinding
+import co.com.monkeymobile.itunes_searcher.domain.model.Album
 import co.com.monkeymobile.itunes_searcher.presentation.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AlbumsSearcherActivity :
-    BaseActivity<AlbumSearcherViewModel, AlbumSearcherViewState, AlbumSearcherViewEvent>() {
+    BaseActivity<AlbumSearcherViewModel, AlbumSearcherViewState, AlbumSearcherViewEvent>(),
+    AlbumAdapter.AlbumItemListener {
 
     companion object {
         fun getIntent(context: Context) = Intent(context, AlbumsSearcherActivity::class.java)
@@ -18,6 +21,7 @@ class AlbumsSearcherActivity :
 
     override val viewModel: AlbumSearcherViewModel by viewModels()
     private lateinit var binding: ActivityAlbumsSearcherBinding
+    private lateinit var adapter: AlbumAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +40,9 @@ class AlbumsSearcherActivity :
     }
 
     private fun buildInitialState() {
+        adapter = AlbumAdapter(this)
+        binding.albumRecyclerView.adapter = adapter
+
         binding.buttonSearch.setOnClickListener {
             dispatchEvent(
                 AlbumSearcherViewEvent.Search(
@@ -46,7 +53,23 @@ class AlbumsSearcherActivity :
     }
 
     private fun buildContentState(state: AlbumSearcherViewState.Content) {
+        val haveResults = state.albums.isNotEmpty()
 
+        val errorMessageVisibility = if (haveResults) {
+            View.GONE
+        } else {
+            View.VISIBLE
+        }
+
+        with(binding) {
+            buttonSearch.isEnabled = true
+            term.isEnabled = true
+            progress.visibility = View.GONE
+            albumRecyclerView.visibility = View.VISIBLE
+            errorMessage.visibility = errorMessageVisibility
+        }
+
+        adapter.submitList(state.albums)
     }
 
     private fun buildAlbumInfoState(state: AlbumSearcherViewState.AlbumInfo) {
@@ -54,6 +77,16 @@ class AlbumsSearcherActivity :
     }
 
     private fun buildLoadingState() {
+        with(binding) {
+            buttonSearch.isEnabled = false
+            term.isEnabled = false
+            progress.visibility = View.VISIBLE
+            albumRecyclerView.visibility = View.GONE
+            errorMessage.visibility = View.GONE
+        }
+    }
+
+    override fun onAlbumClicked(album: Album) {
 
     }
 }
