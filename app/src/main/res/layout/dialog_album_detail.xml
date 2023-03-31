@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/labelPrimaryGenre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_primary_genre"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelCollectionPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_collection_price"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelPrimaryGenre"
+        app:layout_constraintTop_toBottomOf="@+id/labelPrimaryGenre" />
+
+    <TextView
+        android:id="@+id/labelCurrency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_currency"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelCollectionPrice"
+        app:layout_constraintTop_toBottomOf="@+id/collectionPrice" />
+
+    <TextView
+        android:id="@+id/labelCopyright"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/text_copyright"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/labelCurrency"
+        app:layout_constraintTop_toBottomOf="@+id/currency" />
+
+    <TextView
+        android:id="@+id/primaryGenre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/labelPrimaryGenre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/labelCollectionPrice"
+        app:layout_constraintTop_toTopOf="@+id/labelPrimaryGenre"
+        tools:text="Rock" />
+
+    <TextView
+        android:id="@+id/collectionPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/primaryGenre"
+        app:layout_constraintTop_toTopOf="@+id/labelCollectionPrice"
+        tools:text="7.5" />
+
+    <TextView
+        android:id="@+id/currency"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/collectionPrice"
+        app:layout_constraintTop_toTopOf="@+id/labelCurrency"
+        tools:text="USD" />
+
+    <TextView
+        android:id="@+id/copyright"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/currency"
+        app:layout_constraintTop_toTopOf="@+id/labelCopyright"
+        tools:text="lorem ipsum" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

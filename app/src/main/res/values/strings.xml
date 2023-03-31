@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">itunes_searcher</string>
+    <string name="text_no_data_found">No data found</string>
+    <string name="text_ok">Ok</string>
+    <string name="text_primary_genre">Primary Genre</string>
+    <string name="text_collection_price">Collection Price</string>
+    <string name="text_currency">Currency</string>
+    <string name="text_copyright">Copyright</string>
+    <string name="term_hint_text">Type the name of a Band / Singer / Artist</string>
 </resources>

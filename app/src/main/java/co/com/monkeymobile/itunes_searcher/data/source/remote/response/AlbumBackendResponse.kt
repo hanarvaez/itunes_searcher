@@ -4,6 +4,8 @@ import android.os.Parcelable
 import co.com.monkeymobile.itunes_searcher.domain.model.Album
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
+import java.text.SimpleDateFormat
+import java.util.*
 
 @Parcelize
 data class AlbumBackendResponse(
@@ -17,27 +19,31 @@ data class AlbumBackendResponse(
 ) : Parcelable
 
 fun AlbumBackendResponse.toAlbum(): Album? {
-    val haveNullField = listOf(
-        albumName,
-        artWork,
-        price,
-        copyright,
-        currency,
-        releaseDate,
-        primaryGenreName
-    ).any { it == null }
-
-    return if (haveNullField) {
+    return if(
+        albumName == null ||
+        artWork == null ||
+        price == null ||
+        copyright == null ||
+        currency == null ||
+        releaseDate == null ||
+        primaryGenreName == null
+    ) {
         null
     } else {
+
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val parsedDate: Date = inputFormat.parse(releaseDate) ?: Date()
+        val formattedDate = outputFormat.format(parsedDate)
+
         Album(
-            albumName.orEmpty(),
-            artWork.orEmpty(),
-            price ?: 0.0,
-            copyright.orEmpty(),
-            currency.orEmpty(),
-            releaseDate.orEmpty(),
-            primaryGenreName.orEmpty()
+            albumName,
+            artWork,
+            price,
+            copyright,
+            currency,
+            formattedDate,
+            primaryGenreName
         )
     }
 }
