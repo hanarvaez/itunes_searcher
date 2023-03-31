@@ -6,4 +6,5 @@
     <string name="text_collection_price">Collection Price</string>
     <string name="text_currency">Currency</string>
     <string name="text_copyright">Copyright</string>
+    <string name="term_hint_text">Type the name of a Band / Singer / Artist</string>
 </resources>

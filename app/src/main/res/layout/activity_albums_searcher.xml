@@ -9,7 +9,7 @@
         android:id="@+id/term"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Type the name of a Band / Singer / Artist"
+        android:hint="@string/term_hint_text"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
@@ -19,8 +19,8 @@
 
     <ImageButton
         android:id="@+id/buttonSearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:layout_marginEnd="10dp"
         android:background="@null"
         android:src="@android:drawable/ic_menu_search"
