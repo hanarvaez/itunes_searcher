@@ -9,6 +9,7 @@
         android:id="@+id/term"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="Type the name of a Band / Singer / Artist"
         android:layout_marginStart="10dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="10dp"
