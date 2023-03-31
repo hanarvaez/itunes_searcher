@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <TextView
@@ -34,7 +34,7 @@
         android:text="@string/text_currency"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/labelCollectionPrice"
-        app:layout_constraintTop_toBottomOf="@+id/labelCollectionPrice" />
+        app:layout_constraintTop_toBottomOf="@+id/collectionPrice" />
 
     <TextView
         android:id="@+id/labelCopyright"
@@ -44,14 +44,16 @@
         android:text="@string/text_copyright"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/labelCurrency"
-        app:layout_constraintTop_toBottomOf="@+id/labelCurrency" />
+        app:layout_constraintTop_toBottomOf="@+id/currency" />
 
     <TextView
         android:id="@+id/primaryGenre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         app:layout_constraintBottom_toBottomOf="@+id/labelPrimaryGenre"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/labelCollectionPrice"
         app:layout_constraintTop_toTopOf="@+id/labelPrimaryGenre"
         tools:text="Rock" />
@@ -60,7 +62,8 @@
         android:id="@+id/collectionPrice"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/labelCollectionPrice"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/primaryGenre"
         app:layout_constraintTop_toTopOf="@+id/labelCollectionPrice"
         tools:text="7.5" />
@@ -69,7 +72,8 @@
         android:id="@+id/currency"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/labelCurrency"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/collectionPrice"
         app:layout_constraintTop_toTopOf="@+id/labelCurrency"
         tools:text="USD" />
@@ -78,7 +82,8 @@
         android:id="@+id/copyright"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/labelCopyright"
+        android:layout_marginEnd="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/currency"
         app:layout_constraintTop_toTopOf="@+id/labelCopyright"
         tools:text="lorem ipsum" />

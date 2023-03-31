@@ -1,7 +1,6 @@
 package co.com.monkeymobile.itunes_searcher.presentation.albums_searcher
 
 import android.content.Context
-import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
