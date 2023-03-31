@@ -8,6 +8,7 @@ import co.com.monkeymobile.itunes_searcher.domain.use_case.Result
 import co.com.monkeymobile.itunes_searcher.presentation.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -34,7 +35,9 @@ class AlbumSearcherViewModel @Inject constructor(
             }
 
             is Result.Error -> {
-                toastMessage.postValue(result.toString())
+                mutableToastMessage.update {
+                    result.toString()
+                }
                 setState(AlbumSearcherViewState.Content(emptyList()))
             }
         }

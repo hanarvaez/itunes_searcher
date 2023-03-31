@@ -28,8 +28,8 @@ class AlbumsSearcherActivity :
     private var alertDialog: AlertDialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         binding = ActivityAlbumsSearcherBinding.inflate(layoutInflater)
+        super.onCreate(savedInstanceState)
         val view = binding.root
         setContentView(view)
     }
