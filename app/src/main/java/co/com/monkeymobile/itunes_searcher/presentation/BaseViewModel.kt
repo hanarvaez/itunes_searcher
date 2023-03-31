@@ -8,12 +8,17 @@ import co.com.monkeymobile.itunes_searcher.util.LOG_MESSAGE_EVENT
 import co.com.monkeymobile.itunes_searcher.util.TAG_VIEW_UPDATE
 import co.com.monkeymobile.itunes_searcher.util.launchSafe
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
 
 abstract class BaseViewModel<State : ViewState, Event : ViewEvent>(
     private val coroutineDispatcher: CoroutineDispatcher
 ) : ViewModel() {
 
-    val state: MutableLiveData<State> = MutableLiveData()
+    private val mutableState: MutableStateFlow<State?> = MutableStateFlow(null)
+    val state: Flow<State?> = mutableState
+
     val toastMessage: MutableLiveData<String> = MutableLiveData()
 
     init {
@@ -23,10 +28,12 @@ abstract class BaseViewModel<State : ViewState, Event : ViewEvent>(
     protected abstract fun getInitialState(): State
 
     private fun setInitialState() {
-        state.value = getInitialState()
+        mutableState.update {
+            getInitialState()
+        }
     }
 
-    fun getCurrentState() = state.value ?: getInitialState()
+    fun getCurrentState() = mutableState.value ?: getInitialState()
 
     fun dispatchEvent(event: Event) {
         viewModelScope.launchSafe(coroutineDispatcher) {
@@ -38,6 +45,8 @@ abstract class BaseViewModel<State : ViewState, Event : ViewEvent>(
     protected abstract suspend fun processEvent(event: Event)
 
     protected fun setState(state: State) {
-        this.state.postValue(state)
+        this.mutableState.update {
+            state
+        }
     }
 }
