@@ -34,8 +34,14 @@ abstract class BaseActivity<ViewModel : BaseViewModel<State, Event>, State : Vie
             }
         }
 
-        viewModel.toastMessage.observe(this) { message ->
-            Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        CoroutineScope(Dispatchers.IO).launch {
+            viewModel.toastMessage.catch {
+                it.printStackTrace()
+            }.collect { message ->
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(this@BaseActivity, message, Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 

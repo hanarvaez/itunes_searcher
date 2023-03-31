@@ -19,7 +19,8 @@ abstract class BaseViewModel<State : ViewState, Event : ViewEvent>(
     private val mutableState: MutableStateFlow<State?> = MutableStateFlow(null)
     val state: Flow<State?> = mutableState
 
-    val toastMessage: MutableLiveData<String> = MutableLiveData()
+    protected val mutableToastMessage = MutableStateFlow("")
+    val toastMessage: Flow<String> = mutableToastMessage
 
     init {
         setInitialState()
